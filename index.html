@@ -28,9 +28,16 @@
         height: 100vh;
         padding: 20px 50px 50px 50px;
         display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      /* This wrapper is the key: it stays centered as one block */
+      #content-wrap {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: stretch;
       }
 
       #project-title {
@@ -88,24 +95,26 @@
 
   <body>
     <div id="page-wrap">
-      <div id="project-title">Circularity Optimizer</div>
+      <div id="content-wrap">
+        <div id="project-title">Circularity Optimizer</div>
 
-      <div id="unity-container" class="unity-desktop">
-        <canvas id="unity-canvas" width=1920 height=1080 tabindex="-1"></canvas>
+        <div id="unity-container" class="unity-desktop">
+          <canvas id="unity-canvas" width=1920 height=1080 tabindex="-1"></canvas>
 
-        <div id="unity-loading-bar">
-          <div id="unity-logo"></div>
-          <div id="unity-progress-bar-empty">
-            <div id="unity-progress-bar-full"></div>
+          <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+              <div id="unity-progress-bar-full"></div>
+            </div>
           </div>
-        </div>
 
-        <div id="unity-warning"></div>
+          <div id="unity-warning"></div>
 
-        <div id="unity-footer">
-          <div id="unity-webgl-logo"></div>
-          <div id="unity-fullscreen-button"></div>
-          <div id="unity-build-title">CircularityOptimizer</div>
+          <div id="unity-footer">
+            <div id="unity-webgl-logo"></div>
+            <div id="unity-fullscreen-button"></div>
+            <div id="unity-build-title">CircularityOptimizer</div>
+          </div>
         </div>
       </div>
     </div>
@@ -119,6 +128,7 @@
       var warningBanner = document.querySelector("#unity-warning");
       var pageWrap = document.querySelector("#page-wrap");
       var projectTitle = document.querySelector("#project-title");
+      var contentWrap = document.querySelector("#content-wrap");
 
 
       function unityShowBanner(msg, type) {
@@ -194,7 +204,7 @@
         canvas.style.height = displayHeight + "px";
         container.style.width = displayWidth + "px";
         container.style.height = displayHeight + "px";
-        projectTitle.style.width = displayWidth + "px";
+        contentWrap.style.width = displayWidth + "px";
       }
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
